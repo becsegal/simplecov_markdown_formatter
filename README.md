@@ -1,29 +1,21 @@
-# JSON formatter for SimpleCov
+# Markdown formatter for SimpleCov
 
 ***Note: To learn more about SimpleCov, check out the main repo at [SimpleCov](https://github.com/simplecov-ruby/simplecov)***
 
-Generates a formatted JSON report of your [SimpleCov](https://github.com/simplecov-ruby/simplecov) ruby code coverage results on ruby 2.4+. Originally intended to add `simplecov`'s results reading capacity to CI tools.
+Generates a formatted markdown report of your [SimpleCov](https://github.com/simplecov-ruby/simplecov) ruby code coverage results on ruby 2.4+. Intended to display results from Github actions.
+
+Borrowed heavily from [simplecov_json_formatter](https://github.com/codeclimate-community/simplecov_json_formatter).
 
 ## Overview
 
-You can expect for this gem to produce a `coverage.json` file, located at the `coverage` folder.
+You can expect for this gem to produce a `coverage.md` file, located at the `coverage` folder.
 
-Depending on your `SimpleCoV`'s settings you will experiment different outcomes. Particularly depending on which type of coverage are you running `SimpleCov` with:
+Depending on your `SimpleCov`'s settings you will experiment different outcomes. Particularly depending on which type of coverage are you running `SimpleCov` with:
 
-- If you configure `SimpleCov` to run with `branch` coverage you should expect an output formatted like [sample_with_branch.json](https://github.com/fede-moya/simplecov_json_formatter/blob/master/spec/fixtures/sample_with_branch.json)
-- Otherwise you should expect an output formatted like [sample.json](https://github.com/fede-moya/simplecov_json_formatter/blob/master/spec/fixtures/sample.json)
+- If you configure `SimpleCov` to run with `branch` coverage you should expect an output formatted like [sample_with_branch.md](https://github.com/becsegal/simplecov_markdown_formatter/blob/main/spec/fixtures/sample_with_branch.md)
+- Otherwise you should expect an output formatted like [sample.md](https://github.com/becsegal/simplecov_markdown_formatter/blob/main/spec/fixtures/sample.md)
 
-## Development
-
-We encourage you to use docker for common operations like running tests, or debugging your code. Running `make sh` will start a new container instance based on the `Dockerfile` provided at root, finally a shell prompt will be displayed on your terminal. Also, syncronization with your local files will be already set.
-
-### Tests
-`make test` will trigger the excution of both running tests and running rubocop as linter, by simply running `rake`, this actions will be run inside a new container but using your local files.
-
-### Format
-
-`make format` will run `rubocop -a` which stands for _autocorrect_ and format your code according to the `.rubocop.yml` config file.
 
 ## Copyright
 
-See [License](https://github.com/codeclimate-community/simplecov_json_formatter/blob/master/LICENSE)
+See [License](https://github.com/becsegal/simplecov_markdown_formatter/blob/master/LICENSE)

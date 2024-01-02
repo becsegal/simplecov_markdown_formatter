@@ -1,6 +1,0 @@
-#!/bin/sh
-
-exec docker run \
-	-it --rm \
-	--volume "$PWD:/gem" \
-	simplecov-json-formatter "$@"

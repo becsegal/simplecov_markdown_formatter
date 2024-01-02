@@ -3,7 +3,7 @@
 require 'spec_helper'
 require 'byebug'
 
-describe SimpleCov::Formatter::JSONFormatter do
+describe SimpleCov::Formatter::MarkdownFormatter do
   let(:result) do
     SimpleCov::Result.new({
                             source_fixture('sample.rb') => { 'lines' => [
@@ -17,7 +17,7 @@ describe SimpleCov::Formatter::JSONFormatter do
     context 'with line coverage' do
       it 'works' do
         subject.format(result)
-        expect(json_ouput).to eq(json_result('sample'))
+        expect(markdown_output).to eq(markdown_result('sample'))
       end
     end
 
@@ -52,7 +52,7 @@ describe SimpleCov::Formatter::JSONFormatter do
 
       it 'works' do
         subject.format(result)
-        expect(json_ouput).to eq(json_result('sample_with_branch'))
+        expect(markdown_output).to eq(markdown_result('sample_with_branch'))
       end
     end
 
@@ -67,13 +67,13 @@ describe SimpleCov::Formatter::JSONFormatter do
 
         # right now SimpleCov works mostly on global state, hence setting the groups that way
         # would be global state --> Mocking is better here
-        allow(res).to receive_messages(groups: { 'My Group' => double('File List', covered_percent: 80.0) })
+        allow(res).to receive_messages(groups: { 'My Group' => res.files })
         res
       end
 
       it 'displays groups correctly in the JSON' do
         subject.format(result)
-        expect(json_ouput).to eq(json_result('sample_groups'))
+        expect(markdown_output).to eq(markdown_result('sample_groups'))
       end
     end
   end
