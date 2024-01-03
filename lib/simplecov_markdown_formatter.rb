@@ -37,7 +37,7 @@ module SimpleCov
       end
 
       def files_table(files)
-        files = files.to_a.sort!(&:covered_percent)
+        files = files.to_a.sort_by(&:covered_percent)
         str = +''
         str << "#{table_header}\n"
         files.each do |source_file|
@@ -48,7 +48,7 @@ module SimpleCov
 
       def table_header
         str = +'| Filename | Line Coverage | Lines of Code | Covered Lines | Hits/Line |'
-        str << ' Branch Coverage | Branches | Covered branches | Missed branches |' if SimpleCov.branch_coverage?
+        str << ' Branch Coverage | Branches | Covered Branches | Missed Branches |' if SimpleCov.branch_coverage?
         str << "\n| --- | --- | --- | --- | --- |"
         str << ' --- | --- | --- | --- |' if SimpleCov.branch_coverage?
         str
@@ -82,7 +82,7 @@ module SimpleCov
       end
 
       def current_working_directory
-        @current_working_directory ||= File.expand_path('..', File.dirname(__FILE__))
+        @current_working_directory ||= Dir.pwd
       end
 
       def filename(path)
