@@ -26,20 +26,20 @@ module SimpleCov
 
       def summary_header
         str = +"## #{coverage_emoji(@result.covered_percent)} #{formatted_pct(@result.covered_percent)} of lines covered"
-        str += " / #{formatted_pct(@result.covered_branches.to_f / @result.total_branches)} of branche covered" if SimpleCov.branch_coverage?
+        str += " / #{formatted_pct(covered_branches_percent)} of branches covered" if SimpleCov.branch_coverage?
         str
       end
 
       def files_summary
-        "*#{@result.files.size}* files in total"
+        "**#{@result.files.size}** files in total"
       end
 
       def line_coverage_summary
-        "*#{@result.total_lines}* relevant lines with *#{@result.covered_lines.size}* covered and *#{@result.missed_lines.size}* missed"
+        "**#{@result.total_lines}** relevant lines with **#{@result.covered_lines.size}** covered and **#{@result.missed_lines.size}** missed"
       end
 
       def branch_coverage_summary
-        "*#{@result.total_branches}* branches with *#{@result.covered_branches}* covered and *#{@result.missed_branches}* missed"
+        "**#{@result.total_branches}** branches with **#{@result.covered_branches}** covered and **#{@result.missed_branches}** missed"
       end
 
       def groups_tables
@@ -114,6 +114,10 @@ module SimpleCov
         else
           ':red_circle:'
         end
+      end
+
+      def covered_branches_percent
+        100.0 * @result.covered_branches / @result.total_branches
       end
 
       def output_message
