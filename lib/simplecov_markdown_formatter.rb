@@ -35,7 +35,7 @@ module SimpleCov
       end
 
       def line_coverage_summary
-        "**#{@result.total_lines}** relevant lines with **#{@result.covered_lines.size}** covered and **#{@result.missed_lines.size}** missed"
+        "**#{@result.total_lines}** relevant lines with **#{@result.covered_lines}** covered and **#{@result.missed_lines}** missed"
       end
 
       def branch_coverage_summary
