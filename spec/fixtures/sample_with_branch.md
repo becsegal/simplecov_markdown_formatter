@@ -1,4 +1,7 @@
-## :warning: 90.0% of 10 lines of code with 1.0 hits per covered line
-| Filename | Line Coverage | Lines of Code | Covered Lines | Hits/Line | Branch Coverage | Branches | Covered branches | Missed branches |
+## :warning: 90.0% of lines covered / 0.5% of branche covered
+*1* files in total
+*10* relevant lines with *8* covered and *8* missed
+*2* branches with *1* covered and *1* missed
+| Filename | Line Coverage | Lines of Code | Covered Lines | Hits/Line | Branch Coverage | Branches | Covered Branches | Missed Branches |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| /spec/fixtures/sample.rb | 90.0% | 10 | 9 | 1.0 | 50.0% | 2 | 1 | 1 |
+| /spec/fixtures/sample.rb | :warning: 90.0% | 10 | 9 | 1.0 | :red_circle: 50.0% | 2 | 1 | 1 |

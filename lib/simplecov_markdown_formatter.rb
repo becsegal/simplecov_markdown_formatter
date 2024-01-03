@@ -16,15 +16,30 @@ module SimpleCov
       def export
         File.open(File.join(SimpleCov.coverage_path, FILENAME), 'w') do |file|
           file << "#{summary_header}\n"
+          file << "#{files_summary}\n"
+          file << "#{line_coverage_summary}\n"
+          file << "#{branch_coverage_summary}\n" if SimpleCov.branch_coverage?
           file << groups_tables if @result.groups.any?
           file << files_table(@result.files) unless @result.groups.any?
         end
       end
 
       def summary_header
-        "## #{coverage_emoji(@result.covered_percent)} "\
-        "#{formatted_pct(@result.covered_percent)} of #{@result.total_lines} lines of code "\
-        "with #{@result.covered_strength.round(1)} hits per covered line"
+        str = +"## #{coverage_emoji(@result.covered_percent)} #{formatted_pct(@result.covered_percent)} of lines covered"
+        str += " / #{formatted_pct(@result.covered_branches.to_f / @result.total_branches)} of branche covered" if SimpleCov.branch_coverage?
+        str
+      end
+
+      def files_summary
+        "*#{@result.files.size}* files in total"
+      end
+
+      def line_coverage_summary
+        "*#{@result.total_lines}* relevant lines with *#{@result.covered_lines.size}* covered and *#{@result.missed_lines.size}* missed"
+      end
+
+      def branch_coverage_summary
+        "*#{@result.total_branches}* branches with *#{@result.covered_branches}* covered and *#{@result.missed_branches}* missed"
       end
 
       def groups_tables
@@ -64,14 +79,14 @@ module SimpleCov
 
       def file_line_columns(source_file)
         "| #{filename(source_file.filename)} "\
-        "| #{formatted_pct(source_file.covered_percent)} "\
+        "| #{coverage_emoji(source_file.covered_percent)} #{formatted_pct(source_file.covered_percent)} "\
         "| #{source_file.lines_of_code} "\
         "| #{source_file.covered_lines.size} "\
         "| #{source_file.covered_strength.round(1)} |"
       end
 
       def file_branch_columns(source_file)
-        "#{formatted_pct(source_file.branches_coverage_percent)} "\
+        "#{coverage_emoji(source_file.branches_coverage_percent)} #{formatted_pct(source_file.branches_coverage_percent)} "\
         "| #{source_file.total_branches.count} "\
         "| #{source_file.covered_branches.count} "\
         "| #{source_file.missed_branches.count} |"
