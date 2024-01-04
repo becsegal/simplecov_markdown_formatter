@@ -109,9 +109,9 @@ module SimpleCov
       # Magic numbers copied from the http formatter
       # https://github.com/simplecov-ruby/simplecov-html/blob/79ddf6149ad9551587acca471b9af64a6bcac7cc/lib/simplecov-html.rb#L118
       def coverage_emoji(pct_coverage)
-        if pct_coverage.to_i > 90
+        if pct_coverage > 90.0
           ':green_heart:'
-        elsif pct_coverage.to_i > 80
+        elsif pct_coverage > 80.0
           ':warning:'
         else
           ':red_circle:'
