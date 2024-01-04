@@ -26,7 +26,9 @@ module SimpleCov
 
       def summary_header
         str = +"## #{coverage_emoji(@result.covered_percent)} #{formatted_pct(@result.covered_percent)} of lines covered"
-        str += " / #{formatted_pct(covered_branches_percent)} of branches covered" if SimpleCov.branch_coverage?
+        if SimpleCov.branch_coverage?
+          str += " / #{coverage_emoji(covered_branches_percent)} #{formatted_pct(covered_branches_percent)} of branches covered"
+        end
         str
       end
 

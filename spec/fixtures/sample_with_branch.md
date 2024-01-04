@@ -1,4 +1,4 @@
-## :warning: 90.0% of lines covered / 50.0% of branches covered
+## :warning: 90.0% of lines covered / :red_circle: 50.0% of branches covered
 **1** files in total
 **10** relevant lines with **9** covered and **1** missed
 **2** branches with **1** covered and **1** missed
